@@ -8,7 +8,7 @@ const AboutSection = () => {
         <div className="relative group">
           <div className="overflow-hidden rounded-2xl">
             <img
-              src="/src/assets/ceo.jpg"   // replace with your CEO image if needed
+              src="/src/assets/ceo.jpg"   
               alt="CEO of VIBRANTA"
               className="w-full h-[450px] object-cover rounded-2xl transform transition duration-700 group-hover:scale-105"
             />

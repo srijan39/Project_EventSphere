@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { CLUB_NAME, NAV_LINKS } from "../data/mockData";
+import { CLUB_NAME,CLUB_LOGO, NAV_LINKS } from "../data/mockData";
 
 const Navbar = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -13,7 +13,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-zinc-800 py-4">
+    <nav className="sticky top-0 z-50 bg-black border-b border-zinc-800 py-4">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6">
 
         {/* Logo */}
@@ -25,7 +25,11 @@ const Navbar = () => {
           }}
           className="text-2xl font-bold text-white tracking-widest"
         >
-          {CLUB_NAME}
+          <img
+  src={CLUB_LOGO}
+  alt={CLUB_NAME}
+  className="h-10 w-auto object-contain"
+/>
         </a>
 
         {/* Desktop Links */}

@@ -1,4 +1,4 @@
-import LOGO from "../assets/logo.svg";
+import LOGO from "../assets/headerPointer.png";
 export const CLUB_NAME = "VIBRANTA";
 export const CLUB_LOGO = LOGO;
 export const CLUB_TAGLINE = "Where Innovation Meets Community";

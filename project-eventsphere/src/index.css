@@ -1,5 +1,10 @@
 @import "tailwindcss";
-/* Slow cinematic zoom */
+html, body, #root {
+  background: black;
+}
+html, body {
+  cursor: url("/cursor3.png") 32 32, auto;
+}
 @keyframes slowZoom {
   0% { transform: scale(1); }
   100% { transform: scale(1.08); }
@@ -37,4 +42,36 @@
 
 .animate-fadeInUp {
   animation: fadeInUp 1s ease-out forwards;
+}
+/* SVG Draw Animation */
+.logo-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 2s ease forwards;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Page Reveal Animation */
+.page-reveal {
+  animation: reveal 1s ease forwards;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(2);
+  }
+}
+
+.animate-reveal {
+  animation: reveal 0.8s ease forwards;
 }

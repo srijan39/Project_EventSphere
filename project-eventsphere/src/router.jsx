@@ -1,24 +1,37 @@
 import { createBrowserRouter, Outlet } from "react-router-dom";
+import { useState } from "react";
+
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Loader from "./components/Loader";
+
 import Home from "./pages/Home";
 import Events from "./pages/Events";
 import Gallery from "./pages/Gallery";
 import About from "./pages/About";
 
-/* Layout Component */
 const Layout = () => {
+  const [loading, setLoading] = useState(true);
+
   return (
-    <>
-      <Navbar />
+    <div className="min-h-screen bg-black text-white relative overflow-hidden">
+      
+      {/* Main Website */}
+      <div
+        className={`transition-all duration-700 ${
+          loading ? "opacity-0 scale-105" : "opacity-100 scale-100"
+        }`}
+      >
+        <Navbar />
+        <main>
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
 
-      {/* No pt-20 here */}
-      <main className="min-h-screen bg-black text-white">
-        <Outlet />
-      </main>
-
-      <Footer />
-    </>
+      {/* Loader Overlay */}
+      {loading && <Loader onFinish={() => setLoading(false)} />}
+    </div>
   );
 };
 
