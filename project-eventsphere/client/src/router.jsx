@@ -9,13 +9,14 @@ import Home from "./pages/Home";
 import Events from "./pages/Events";
 import Gallery from "./pages/Gallery";
 import About from "./pages/About";
+import RecruitmentForm from "./pages/RecruitmentForm"; // ✅ NEW
 
 const Layout = () => {
   const [loading, setLoading] = useState(true);
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      
+
       {/* Main Website */}
       <div
         className={`transition-all duration-700 ${
@@ -23,9 +24,11 @@ const Layout = () => {
         }`}
       >
         <Navbar />
+
         <main>
           <Outlet />
         </main>
+
         <Footer />
       </div>
 
@@ -44,6 +47,9 @@ const router = createBrowserRouter([
       { path: "events", element: <Events /> },
       { path: "gallery", element: <Gallery /> },
       { path: "about", element: <About /> },
+
+      // ✅ Recruitment Form Route
+      { path: "recruitment", element: <RecruitmentForm /> },
     ],
   },
 ]);

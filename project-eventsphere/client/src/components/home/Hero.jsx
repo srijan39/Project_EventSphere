@@ -1,90 +1,107 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { CLUB_NAME } from "../../data/mockData";
 
 const texts = [
-  "Where Innovation Meets Community",
-  "Build. Create. Inspire.",
-  "Empowering Future Leaders.",
+  "Celebrating Participation and Excellence",
+  "Creating Meaningful Events on Campus",
+  "Inspiring Talent, Recognition, and Growth",
 ];
 
 const Hero = () => {
-  const [currentText, setCurrentText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
   const [textIndex, setTextIndex] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const speed = isDeleting ? 50 : 90;
+    const currentFullText = texts[textIndex];
+    const typingSpeed = isDeleting ? 35 : 65;
 
     const timeout = setTimeout(() => {
-      const fullText = texts[textIndex];
-
-      setCurrentText((prev) =>
+      setDisplayText((prev) =>
         isDeleting
-          ? fullText.substring(0, prev.length - 1)
-          : fullText.substring(0, prev.length + 1)
+          ? currentFullText.substring(0, prev.length - 1)
+          : currentFullText.substring(0, prev.length + 1)
       );
 
-      if (!isDeleting && currentText === fullText) {
+      if (!isDeleting && displayText === currentFullText) {
         setTimeout(() => setIsDeleting(true), 1200);
-      } else if (isDeleting && currentText === "") {
+      }
+
+      if (isDeleting && displayText === "") {
         setIsDeleting(false);
         setTextIndex((prev) => (prev + 1) % texts.length);
       }
-    }, speed);
+    }, typingSpeed);
 
     return () => clearTimeout(timeout);
-  }, [currentText, isDeleting, textIndex]);
+  }, [displayText, isDeleting, textIndex]);
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden text-white pt-24">
+    <section className="relative min-h-screen overflow-hidden bg-[#fff7f7]">
+      <div className="absolute inset-0 heroRoseBg" />
 
-      {/* Background with cinematic zoom */}
-      <div className="absolute inset-0 animate-slowZoom">
-        <img
-          src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=2000"
-          alt="Club Event"
-          className="w-full h-full object-cover"
-        />
-      </div>
+      <div className="absolute left-[8%] top-[16%] h-44 w-44 rounded-full bg-[#f7c7cf]/45 blur-3xl pointer-events-none" />
+      <div className="absolute right-[14%] top-[12%] h-56 w-56 rounded-full bg-[#f3a8b4]/30 blur-3xl pointer-events-none" />
+      <div className="absolute right-[18%] bottom-[16%] h-52 w-52 rounded-full bg-[#ffd5dc]/35 blur-3xl pointer-events-none" />
 
-      {/* Left Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent" />
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-6 md:px-12 lg:px-20">
+        <motion.div
+          className="w-full md:w-[64%] lg:w-[58%]"
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <p className="text-[11px] sm:text-xs md:text-sm uppercase tracking-[0.35em] text-[#9b7a80] font-medium">
+            Certificate Inspired Event Experience
+          </p>
 
-      {/* Content */}
-      <div className="relative z-10 flex items-center min-h-screen px-6 md:px-16 lg:px-24">
-        <div className="max-w-xl animate-fadeInUp">
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-            {CLUB_NAME}
+          <h1 className="mt-5 text-5xl sm:text-6xl md:text-7xl leading-[0.98] text-[#2f2226] font-semibold">
+            <span className="block font-serif">{CLUB_NAME}</span>
           </h1>
 
-          <p className="mt-6 text-xl text-gray-300 min-h-[32px]">
-            {currentText}
-            <span className="ml-1 animate-pulse">|</span>
+          <div className="mt-6 h-[2px] w-28 bg-gradient-to-r from-[#d14b5c] via-[#ec4f76] to-[#f08aa0]" />
+
+          <p className="mt-7 min-h-[48px] text-lg sm:text-xl md:text-2xl font-medium text-[#5c4349]">
+            {displayText}
+            <span className="ml-1 animate-pulse text-[#d14b5c]">|</span>
           </p>
 
-          <p className="mt-6 text-gray-400">
-            A student-driven tech community focused on innovation,
-            collaboration, and building impactful experiences on campus.
+          <p className="mt-6 max-w-2xl text-sm sm:text-base md:text-lg leading-8 text-[#746167]">
+            We design memorable seminars, competitions, and club experiences that
+            celebrate creativity, participation, and achievement with a refined,
+            warm, and elegant identity.
           </p>
 
-          <div className="mt-8 flex gap-4">
-            <button className="px-6 py-3 bg-white text-black rounded-md hover:bg-gray-200 transition">
+          <div className="mt-10 flex flex-col sm:flex-row gap-4">
+            <button
+              onClick={() => navigate("/events")}
+              className="rounded-full bg-gradient-to-r from-[#d14b5c] via-[#ec4f76] to-[#f08aa0] px-8 py-3.5 text-sm sm:text-base font-semibold text-white shadow-[0_18px_45px_-20px_rgba(209,75,92,0.45)] transition duration-300 hover:scale-[1.03] hover:shadow-[0_20px_55px_-18px_rgba(209,75,92,0.6)] active:scale-[0.98]"
+            >
               Explore Events
             </button>
 
-            <button className="px-6 py-3 border border-gray-500 rounded-md hover:bg-white hover:text-black transition">
-              Join Us
+            <button
+              onClick={() => navigate("/recruitment")}
+              className="rounded-full border border-[#efcfd5] bg-white/85 px-8 py-3.5 text-sm sm:text-base font-semibold text-[#5a3f45] transition duration-300 hover:border-[#d14b5c] hover:bg-white hover:scale-[1.03] active:scale-[0.98]"
+            >
+              Join the Club
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-          <div className="w-1 h-2 bg-white rounded-full mt-2"></div>
-        </div>
-      </div>
+      <style>{`
+        .heroRoseBg {
+          background:
+            radial-gradient(circle at 14% 20%, rgba(247, 199, 207, 0.55), transparent 30%),
+            radial-gradient(circle at 82% 18%, rgba(240, 138, 160, 0.22), transparent 28%),
+            radial-gradient(circle at 78% 78%, rgba(236, 79, 118, 0.16), transparent 26%),
+            linear-gradient(135deg, #fffdfd 0%, #fff4f5 42%, #fff8f8 100%);
+        }
+      `}</style>
     </section>
   );
 };

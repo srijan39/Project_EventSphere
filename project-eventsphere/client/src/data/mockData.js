@@ -58,33 +58,75 @@ export const EVENTS = [
 export const GALLERY_IMAGES = [
   {
     id: 1,
-    src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop",
-    alt: "Tech conference crowd",
+    title: "Tech Fest 2025",
+    category: "Innovation",
+    coverImage:
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
+    previewImages: [
+      "https://images.unsplash.com/photo-1518779578993-ec3579fee39f",
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+      "https://images.unsplash.com/photo-1526378722484-bd91ca387e72",
+    ],
   },
   {
     id: 2,
-    src: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=400&fit=crop",
-    alt: "Speaker on stage",
+    title: "Cultural Night",
+    category: "Celebration",
+    coverImage:
+      "https://images.unsplash.com/photo-1506157786151-b8491531f063",
+    previewImages: [
+      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30",
+      "https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2",
+      "https://images.unsplash.com/photo-1515165562835-c3b8c9a1a2f9",
+    ],
   },
   {
     id: 3,
-    src: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600&h=400&fit=crop",
-    alt: "Workshop session",
+    title: "Startup Meetup",
+    category: "Networking",
+    coverImage:
+      "https://images.unsplash.com/photo-1556761175-4b46a572b786",
+    previewImages: [
+      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d",
+      "https://images.unsplash.com/photo-1552664730-d307ca884978",
+      "https://images.unsplash.com/photo-1553877522-43269d4ea984",
+    ],
   },
   {
     id: 4,
-    src: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600&h=400&fit=crop",
-    alt: "Team collaboration",
+    title: "Hackathon",
+    category: "Coding",
+    coverImage:
+      "https://images.unsplash.com/photo-1517433456452-f9633a875f6f",
+    previewImages: [
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97",
+      "https://images.unsplash.com/photo-1537432376769-00a4c65a4d01",
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+    ],
   },
   {
     id: 5,
-    src: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&h=400&fit=crop",
-    alt: "Hackathon participants",
+    title: "Sports Day",
+    category: "Sports",
+    coverImage:
+      "https://images.unsplash.com/photo-1517649763962-0c623066013b",
+    previewImages: [
+      "https://images.unsplash.com/photo-1546519638-68e109498ffc",
+      "https://images.unsplash.com/photo-1517649763962-0c623066013b",
+      "https://images.unsplash.com/photo-1521412644187-c49fa049e84d",
+    ],
   },
   {
     id: 6,
-    src: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=600&h=400&fit=crop",
-    alt: "Community gathering",
+    title: "Music Fest",
+    category: "Entertainment",
+    coverImage:
+      "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc",
+    previewImages: [
+      "https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2",
+      "https://images.unsplash.com/photo-1511379938547-c1f69419868d",
+      "https://images.unsplash.com/photo-1506157786151-b8491531f063",
+    ],
   },
 ];
 
