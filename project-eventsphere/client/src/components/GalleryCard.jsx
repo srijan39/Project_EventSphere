@@ -1,75 +1,62 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const GalleryCard = ({ event }) => {
-  const [hovered, setHovered] = useState(false);
-
   return (
-    <div
-      className="relative overflow-visible"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      {/* Main Card */}
+    <div className="group relative overflow-visible">
       <motion.div
-        animate={{
-          scale: hovered ? 1.05 : 1,
-          y: hovered ? -6 : 0,
+        whileHover={{
+          scale: 1.025,
+          y: -4,
         }}
-        transition={{ duration: 0.25 }}
-        className="overflow-hidden rounded-xl border border-white/10 bg-white/5"
+        transition={{
+          duration: 0.22,
+          ease: "easeOut",
+        }}
+        className="overflow-hidden rounded-xl border border-white/10 bg-white/5 will-change-transform"
       >
-        <div className="relative h-60 w-full">
+        <div className="relative h-60 w-full overflow-hidden">
           <img
             src={event.coverImage}
             alt={event.title}
-            className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover transition-transform duration-300 will-change-transform group-hover:scale-105"
           />
 
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition duration-300" />
+          <div className="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-          {/* Title */}
           <div className="absolute bottom-0 left-0 p-4">
-            <h3 className="text-white font-semibold text-lg">
+            <h3 className="text-lg font-semibold text-white">
               {event.title}
             </h3>
           </div>
         </div>
       </motion.div>
 
-      {/* Hover Popup (Desktop only) */}
-      <AnimatePresence>
-        {hovered && (
-          <motion.div
-            initial={{ opacity: 0, y: 15, scale: 0.95 }}
-            animate={{ opacity: 1, y: 8, scale: 1 }}
-            exit={{ opacity: 0, y: 15, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="absolute left-1/2 top-full z-30 mt-4 hidden w-[320px] -translate-x-1/2 rounded-xl bg-black/90 p-3 shadow-2xl md:block"
-          >
-            <div className="grid grid-cols-3 gap-2">
-              {event.previewImages.map((img, index) => (
-                <div key={index} className="h-24 overflow-hidden rounded-lg">
-                  <img
-                    src={img}
-                    alt={`preview-${index}`}
-                    className="h-full w-full object-cover hover:scale-110 transition duration-300"
-                  />
-                </div>
-              ))}
+      <div className="pointer-events-none absolute left-1/2 top-full z-30 mt-4 hidden w-[300px] -translate-x-1/2 translate-y-3 scale-95 rounded-xl bg-black/90 p-3 opacity-0 shadow-xl transition-all duration-200 group-hover:translate-y-1 group-hover:scale-100 group-hover:opacity-100 md:block">
+        <div className="grid grid-cols-3 gap-2">
+          {event.previewImages.slice(0, 3).map((img, index) => (
+            <div key={index} className="h-20 overflow-hidden rounded-lg">
+              <img
+                src={img}
+                alt={`${event.title} preview ${index + 1}`}
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover"
+              />
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          ))}
+        </div>
+      </div>
 
-      {/* Mobile fallback (no hover) */}
       <div className="mt-3 grid grid-cols-3 gap-2 md:hidden">
-        {event.previewImages.map((img, index) => (
+        {event.previewImages.slice(0, 3).map((img, index) => (
           <div key={index} className="h-20 overflow-hidden rounded-lg">
             <img
               src={img}
-              alt={`mobile-${index}`}
+              alt={`${event.title} mobile preview ${index + 1}`}
+              loading="lazy"
+              decoding="async"
               className="h-full w-full object-cover"
             />
           </div>

@@ -235,7 +235,7 @@ export default function RecruitmentForm() {
 
     if (!form.contact.trim()) next.contact = "Contact number is required.";
     else if (!/^\d{10}$/.test(form.contact.replace(/\s/g, ""))) {
-      next.contact = "Enter a valid 10-digit contact number.";
+      next.contact = "Enter a valid 10-digit contact ;number.";
     }
 
     if (!form.gender) next.gender = "Select a gender.";
@@ -438,7 +438,7 @@ export default function RecruitmentForm() {
               options={ [
                 { label: "Male", value: "Male" },
                 { label: "Female", value: "Female" },
-                { label: "Chakka", value: "Chakka" },
+                { label: "Prefer not to say", value: "Prefer not to say" },
               ] }
             />
 
@@ -576,7 +576,7 @@ export default function RecruitmentForm() {
             { submitted && (
               <div className='rounded-2xl border border-emerald-400/20 bg-emerald-400/10 p-4'>
                 <p className='font-semibold text-emerald-100'>
-                  ✅ Submitted successfully!
+                  Submitted successfully!
                 </p>
                 <p className='mt-1 text-sm text-emerald-100/80'>
                   Submission time:{ " " }
